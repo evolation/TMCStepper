@@ -1,0 +1,2 @@
+COMPONENT_ADD_INCLUDEDIRS := src src/source
+COMPONENT_SRCDIRS := src/source

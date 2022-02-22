@@ -8,7 +8,7 @@
 
 #define SW_CAPABLE_PLATFORM defined(__AVR__) || defined(TARGET_LPC1768)
 
-#include <Stream.h>
+// #include <Stream.h>
 #include <SPI.h>
 #if SW_CAPABLE_PLATFORM
 	#include <SoftwareSerial.h>
@@ -710,7 +710,7 @@ class TMC5160Stepper : public TMC5130Stepper {
 class TMC2208Stepper : public TMCStepper {
 	public:
 		//TMC2208Stepper(HardwareSerial& serial);
-		TMC2208Stepper(Stream * SerialPort, float RS, bool has_rx=true);
+		// TMC2208Stepper(Stream * SerialPort, float RS, bool has_rx=true);
 		#if SW_CAPABLE_PLATFORM
 			TMC2208Stepper(uint16_t SW_RX_pin, uint16_t SW_TX_pin, float RS, bool has_rx=true);
 		#endif
@@ -867,7 +867,7 @@ class TMC2208Stepper : public TMCStepper {
 		struct OTP_PROG_t 	{ constexpr static uint8_t address = 0x04; };
 		struct OTP_READ_t 	{ constexpr static uint8_t address = 0x05; };
 
-		Stream * HWSerial = NULL;
+		// Stream * HWSerial = NULL;
 		#if SW_CAPABLE_PLATFORM
 			SoftwareSerial * SWSerial = NULL;
 		#endif

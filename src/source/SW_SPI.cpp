@@ -45,7 +45,7 @@ void SW_SPIClass::init() {
 }
 
 //Combined shiftOut and shiftIn from Arduino wiring_shift.c
-byte SW_SPIClass::transfer(uint8_t ulVal, uint8_t ulBitOrder) {
+uint8_t SW_SPIClass::transfer(uint8_t ulVal, uint8_t ulBitOrder) {
   uint8_t value = 0;
 
   for (uint8_t i=0 ; i<8 ; ++i) {
