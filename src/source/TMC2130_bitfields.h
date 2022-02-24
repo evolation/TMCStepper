@@ -220,4 +220,16 @@ struct ENCM_CTRL_t {
   };
 };
 
+struct MSCURACT_t {
+  constexpr static uint8_t address = 0x6B;
+  union {
+    uint32_t sr : 25;
+    struct {
+      int16_t cur_a : 9,
+                    : 7,
+              cur_b : 9;
+    };
+  };
+};
+
 #pragma pack(pop)

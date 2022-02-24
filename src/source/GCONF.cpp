@@ -1,5 +1,4 @@
 #include "TMCStepper.h"
-#include "TMC_MACROS.h"
 
 #define SET_REG(SETTING) GCONF_register.SETTING = B; write(GCONF_register.address, GCONF_register.sr)
 #define GET_REG(SETTING) GCONF(); return GCONF_register.SETTING
@@ -58,40 +57,3 @@ Enable analog test output on pin DCO. IHOLD[1..0] selects the function of DCO:
 0…2: T120, DAC, VDDH Attention:
 Not for user, set to 0 for normal operation!
 */
-
-void TMC5160Stepper::recalibrate(bool B)			{ SET_REG(recalibrate); 			}
-void TMC5160Stepper::faststandstill(bool B)			{ SET_REG(faststandstill); 			}
-void TMC5160Stepper::multistep_filt(bool B)			{ SET_REG(multistep_filt); 			}
-bool TMC5160Stepper::recalibrate()					{ GET_REG(recalibrate);				}
-bool TMC5160Stepper::faststandstill()				{ GET_REG(faststandstill);			}
-bool TMC5160Stepper::multistep_filt()				{ GET_REG(multistep_filt);			}
-
-uint32_t TMC2208Stepper::GCONF() {
-	if (write_only) return GCONF_register.sr;
-	GCONF_register.sr = read(GCONF_register.address);
-	return GCONF_register.sr;
-}
-void TMC2208Stepper::GCONF(uint32_t input) {
-	GCONF_register.sr = input;
-	write(GCONF_register.address, GCONF_register.sr);
-}
-
-void TMC2208Stepper::I_scale_analog(bool B)		{ SET_REG(i_scale_analog);	}
-void TMC2208Stepper::internal_Rsense(bool B)	{ SET_REG(internal_rsense);	}
-void TMC2208Stepper::en_spreadCycle(bool B)		{ SET_REG(en_spreadcycle);	}
-void TMC2208Stepper::shaft(bool B) 				{ SET_REG(shaft);			}
-void TMC2208Stepper::index_otpw(bool B)			{ SET_REG(index_otpw);		}
-void TMC2208Stepper::index_step(bool B)			{ SET_REG(index_step);		}
-void TMC2208Stepper::pdn_disable(bool B)		{ SET_REG(pdn_disable);		}
-void TMC2208Stepper::mstep_reg_select(bool B)	{ SET_REG(mstep_reg_select);}
-void TMC2208Stepper::multistep_filt(bool B)		{ SET_REG(multistep_filt);	}
-
-bool TMC2208Stepper::I_scale_analog()	{ GET_REG(i_scale_analog);	}
-bool TMC2208Stepper::internal_Rsense()	{ GET_REG(internal_rsense);	}
-bool TMC2208Stepper::en_spreadCycle()	{ GET_REG(en_spreadcycle);	}
-bool TMC2208Stepper::shaft()			{ GET_REG(shaft);			}
-bool TMC2208Stepper::index_otpw()		{ GET_REG(index_otpw);		}
-bool TMC2208Stepper::index_step()		{ GET_REG(index_step);		}
-bool TMC2208Stepper::pdn_disable()		{ GET_REG(pdn_disable);		}
-bool TMC2208Stepper::mstep_reg_select()	{ GET_REG(mstep_reg_select);}
-bool TMC2208Stepper::multistep_filt()	{ GET_REG(multistep_filt);	}
